@@ -98,6 +98,37 @@ class Sveltekitauth_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sveltekitauth-public.js', array( 'jquery' ), $this->version, false );
 
+		global $wp, $wp_scripts;
+		foreach( $wp_scripts->queue as $script ) :
+			
+			$exclude = array("admin-bar","woocommerce", "wc-checkout",
+			"selectWoo", "wc-add-to-cart","wc-cart-fragments", "sveltekit") ;
+			if (in_array($script, $exclude))
+				continue;
+		wp_dequeue_script( $script );
+		endforeach;
+		
+		
+		global $wp_styles;
+			foreach( $wp_styles->queue as $style ) :
+				$exclude = array("admin-bar","wp-block-library","global-styles","wp-webfonts","select2",
+				"woocommerce-layout","woocommerce-smallscreen","woocommerce-general","woocommerce-inline") ;
+				if (in_array($style, $exclude))
+					continue;
+				
+			endforeach;
+
+
 	}
+
+	public function mypwp_template_redirect($data){
+		global $wp;
+		if(is_front_page()){
+			include_once dirname( __FILE__ ) . '/partials/front_page.php';
+			exit();
+		}
+
+	}
+	
 
 }
