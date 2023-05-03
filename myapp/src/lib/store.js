@@ -1,13 +1,24 @@
 import { writable, get } from 'svelte/store'
 import { browser } from '$app/environment';
-export let data;
-export let datases;
-export let getdata;
-export let datadb;
-if (browser) {
+let data;
+let datases;
+let getdata;
+let datadb;
+let getdatases;
 
-    data = writable(localStorage?._data ? JSON.parse(localStorage.getItem('_data')) : {})
-    datases = writable(sessionStorage?._data ? JSON.parse(sessionStorage.getItem('_datases')) : {})
+   
+
+    data = writable(browser && localStorage?._data ? JSON.parse(localStorage.getItem('_data')) : {})
+    datases = writable((browser && sessionStorage.datases) ?? JSON.parse(sessionStorage.getItem('_datases')) )
     getdata = get(data);
+    getdatases = get(datases);
     datadb = writable({});
-}
+    // console.log("salam",datases)
+
+
+export {data}
+export {datases}
+export {getdata}
+export {getdatases}
+export {datadb}
+
