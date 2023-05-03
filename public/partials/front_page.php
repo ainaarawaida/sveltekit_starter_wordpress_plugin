@@ -34,7 +34,7 @@ foreach ($files1 as $key => $value){
                 // deb($files3);
                 $listlink[] = $value."/". $value2 ;
                 if($value == 'entry' && in_array($files3[0],array("start","app"))){
-                    $footerlink[] = SVELTEKIT_URL."/myapp/build/_app/immutable/".$value."/". $value2 ; 
+                    $footerlink[] = SVELTEKITAUTH_URL."/myapp/build/_app/immutable/".$value."/". $value2 ; 
                 }
             }
         }
@@ -46,7 +46,7 @@ foreach ($files1 as $key => $value){
 
 foreach($listlink AS $key => $val){
     ?>
-    <link rel="modulepreload" href="<?php echo SVELTEKIT_URL ; ?>/myapp/build/_app/immutable/<?php echo $val ; ?>">
+    <link rel="modulepreload" href="<?php echo SVELTEKITAUTH_URL ; ?>/myapp/build/_app/immutable/<?php echo $val ; ?>">
 
 <?php
 

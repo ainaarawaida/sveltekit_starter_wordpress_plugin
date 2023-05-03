@@ -12,7 +12,7 @@
 		dataArray.append('password', fields.password);
 
 		let getFetch = await fetch(
-			`${import.meta.env.VITE_MYBASE}/wp-json/jwt-auth/v1/token?username=${
+			`${import.meta.env.VITE_AUTHURL}/wp-json/jwt-auth/v1/token?username=${
 				fields.username
 			}&password=${fields.password}`,
 			{
@@ -24,7 +24,7 @@
 		if (getFetch.ok == true) {
 			let getFetchData = await getFetch.json();
 			datases.update((value) => {
-				_datases = value;
+				_datases = value || {};
 				_datases.auth = true;
 				_datases.user = getFetchData;
 				sessionStorage.setItem('_datases', JSON.stringify(_datases));
