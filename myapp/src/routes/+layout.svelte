@@ -9,6 +9,8 @@
 	let unsubscribe_data;
 
 	onMount(async () => {
+		localStorage.setItem('assetEnv', assets);
+
 		unsubscribe_data = datases.subscribe((value) => {
 			_datases = value;
 			if (_datases?.auth == true) {

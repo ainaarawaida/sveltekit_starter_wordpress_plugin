@@ -1,5 +1,15 @@
 
+import { goto } from '$app/navigation';
+import { datases } from '$lib/store.js';
+import { assets, base } from '$app/paths';
+let _datases = {};
+
 const apiData = async (inputs, user) =>{
+    (function ($) {
+        $('.loader-wrapper').fadeOut('slow', function() {
+            $(this).show();
+        });
+    })(jQuery);
 
     let dataArray = new FormData();
     let dataHeader = new Headers();
@@ -19,6 +29,12 @@ const apiData = async (inputs, user) =>{
         }
     );
 
+    (function ($) {
+        $('.loader-wrapper').fadeOut('slow', function() {
+            $(this).hide();
+        });
+    })(jQuery);
+    
     if (getFetch.ok == true) {
         let getFetchData = await getFetch.json();
         return JSON.parse(getFetchData) ;
@@ -28,4 +44,50 @@ const apiData = async (inputs, user) =>{
 
 }
 
-export {apiData}
+const apiDataLogin = async (username, password) =>{
+
+    (function ($) {
+        $('.loader-wrapper').fadeOut('slow', function() {
+            $(this).show();
+        });
+    })(jQuery);
+
+    // console.log("start", document.querySelector("#loader"));
+    let dataArray = new FormData();
+    dataArray.append('action', 'Login');
+    dataArray.append('username', username);
+    dataArray.append('password', password);
+
+    let getFetch = await fetch(
+        `${import.meta.env.VITE_AUTHURL}/wp-json/jwt-auth/v1/token?username=${
+            username
+        }&password=${password}`,
+        {
+            method: 'POST',
+            body: dataArray
+        }
+    );
+
+    (function ($) {
+        $('.loader-wrapper').fadeOut('slow', function() {
+            $(this).hide();
+        });
+    })(jQuery);
+
+    let getFetchData = await getFetch.json();
+    if (getFetch.ok == true) {
+        datases.update((value) => {
+            _datases = value || {};
+            _datases.auth = true;
+            _datases.user = getFetchData;
+            sessionStorage.setItem('_datases', JSON.stringify(_datases));
+            return _datases;
+        });
+        goto(`${base}/dashboard`);
+    } else {
+        return  getFetchData;
+    }
+
+}
+
+export {apiData,apiDataLogin}
