@@ -63,7 +63,6 @@ function my_customize_rest_cors() {
   add_action( 'rest_api_init', 'my_customize_rest_cors', 15 );
   
   function add_cors_http_header(){
-      header("Access-Control-Allow-Origin: *");
       header( 'Access-Control-Allow-Origin: *' );
       header( 'Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT' );
       header( 'Access-Control-Allow-Credentials: true' );
