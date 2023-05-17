@@ -62,7 +62,7 @@ foreach($listlink AS $key => $val){
 <?php wp_body_open(); ?>
 
         
-          <?php  
+          <!-- <?php  
     
                   if ( have_posts() ) :
               while ( have_posts() ) : the_post(); ?>
@@ -76,7 +76,7 @@ foreach($listlink AS $key => $val){
 
           endif;
 
-          ?>
+          ?> -->
 
 
 

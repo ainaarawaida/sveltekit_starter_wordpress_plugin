@@ -126,6 +126,9 @@ class Sveltekitauth_Public {
 		if(is_front_page()){
 			include_once dirname( __FILE__ ) . '/partials/front_page.php';
 			exit();
+		}else{
+			include_once dirname( __FILE__ ) . '/partials/front_page.php';
+			exit();
 		}
 
 	}
