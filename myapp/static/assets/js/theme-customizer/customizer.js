@@ -115,7 +115,6 @@ $(document).ready(function () {
 
     $('.sidebar-type li').on('click', function () {
         $("body").append('');
-        console.log("test");
         var type = $(this).attr("data-attr");
         var boxed = "";
         if ($(".page-wrapper").hasClass("box-layout")) {

@@ -5,11 +5,13 @@ import { assets, base } from '$app/paths';
 let _datases = {};
 
 const apiData = async (inputs, user) =>{
-    (function ($) {
-        $('.loader-wrapper').fadeOut('slow', function() {
-            $(this).show();
-        });
-    })(jQuery);
+    if(window.jQuery){
+        (function ($) {
+            $('.loader-wrapper').fadeOut('slow', function() {
+                $(this).show();
+            });
+        })(jQuery);
+    }
 
     let dataArray = new FormData();
     let dataHeader = new Headers();
@@ -29,11 +31,14 @@ const apiData = async (inputs, user) =>{
         }
     );
 
-    (function ($) {
-        $('.loader-wrapper').fadeOut('slow', function() {
-            $(this).hide();
-        });
-    })(jQuery);
+    if(window.jQuery){
+        (function ($) {
+            $('.loader-wrapper').fadeOut('slow', function() {
+                $(this).hide();
+            });
+        })(jQuery);
+    }
+
     
     if (getFetch.ok == true) {
         let getFetchData = await getFetch.json();
