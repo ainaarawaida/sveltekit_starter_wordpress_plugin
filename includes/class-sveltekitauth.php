@@ -217,3 +217,11 @@ class Sveltekitauth {
 	}
 
 }
+
+
+add_filter( 'jwt_auth_token_before_dispatch', 'add_website_to_jwt_token', 10, 2 );
+function add_website_to_jwt_token( $data, $user ) {
+	$data['roles'] = $user->roles;
+	return $data;
+}
+
