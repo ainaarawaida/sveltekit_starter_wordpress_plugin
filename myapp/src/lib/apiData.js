@@ -88,7 +88,13 @@ const apiDataLogin = async (username, password) =>{
             sessionStorage.setItem('_datases', JSON.stringify(_datases));
             return _datases;
         });
-        goto(`${base}/dashboard`);
+     
+        if(getFetchData.roles.includes('administrator')){
+            goto(`${base}/admin/dashboard`);
+        }else{
+            goto(`${base}/user/dashboard`);
+        }
+      
     } else {
         return  getFetchData;
     }

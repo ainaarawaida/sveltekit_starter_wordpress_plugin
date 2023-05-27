@@ -147,6 +147,8 @@
 	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/responsive.css" />
 	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/datatables.css" />
 	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/datatable-extension.css" />
+	<!-- Select2 css-->
+	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/select2.css" />
 </svelte:head>
 
 <!-- Loader starts-->
