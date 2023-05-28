@@ -2,6 +2,9 @@
 	import { onMount, onDestroy, tick } from 'svelte';
 	import { apiData } from '$lib/apiData.js';
 	import { datases } from '$lib/store.js';
+	import { page } from '$app/stores';
+	import { invalidateAll, invalidate, goto } from '$app/navigation';
+	import { assets, base } from '$app/paths';
 
 	let _datases;
 	let postdata = '';
@@ -14,7 +17,8 @@
 		feeCost: '',
 		wc_order_action: '',
 		order_status: 'wc-pending',
-		productIndex: ''
+		productIndex: '',
+		feeIndex: ''
 	};
 	let customers = [];
 	let getProduct = [];
@@ -26,14 +30,22 @@
 	let feetotal = 0;
 	let user_display_name = '';
 	let mode = 'Add';
+	let getpost;
 	// let pageload = false;
 
 	onMount(async () => {
 		_datases = JSON.parse(sessionStorage.getItem('_datases'));
 		user_display_name = _datases?.user?.user_display_name;
-		let getpost = apiData({ action: 'admin/addNewOrder' }, _datases.user);
-		// document.querySelector('.loader-wrapper').classList.add('d-block');
 
+		if ($page.params?.postId) {
+			mode = 'Edit';
+			getpost = apiData(
+				{ action: 'admin/addNewOrder', process: 'getOrder', postId: $page?.params?.postId },
+				_datases.user
+			);
+		} else {
+			getpost = apiData({ action: 'admin/addNewOrder' }, _datases.user);
+		}
 		orderid = (await getpost).post;
 		customers = (await getpost).customers;
 		getProduct = (await getpost).getProduct;
@@ -131,14 +143,22 @@
 
 	const submitHandlerModalFee = async () => {
 		feetotal = 0;
-		feeLists.push({
-			feeName: `RM ${fields.feeCost} fee`,
-			feeCost: fields.feeCost
-		});
+		console.log('sss', fields.feeIndex);
+		if (fields.feeIndex !== '') {
+			feeLists[fields.feeIndex].feeName = `RM ${fields.feeCost} fee`;
+			feeLists[fields.feeIndex].feeCost = fields.feeCost;
+		} else {
+			feeLists.push({
+				feeName: `RM ${fields.feeCost} fee`,
+				feeCost: fields.feeCost
+			});
+		}
+
 		feeLists = feeLists;
 		document.querySelector('#modalFeeClose').click();
 		fields.feeCost = '';
-		console.log('feeLists', feeLists);
+		fields.feeIndex = '';
+		// console.log('feeLists', feeLists);
 	};
 
 	let incrementCount = (order, fee) => {
@@ -146,11 +166,53 @@
 		feetotal += fee;
 		return ''; //return empty string, so `undefined` isn't returned and in turn rendered in HTML
 	};
+
+	let updateOrder = async () => {
+		let getpost = apiData(
+			{
+				action: 'admin/addNewOrder',
+				process: 'updateOrder',
+				dateCreated: fields.dateCreated,
+				order_status: fields.order_status,
+				customer: fields.customer,
+				itemLists,
+				ordernotes,
+				orderid
+			},
+			_datases.user
+		);
+		console.log('getpost', await getpost);
+		// goto('/').then(() => goto(`${base}/admin/addNewOrder/${orderid}`));
+		goto(`${base}/admin/addNewOrder/${orderid}`);
+		mode = 'Edit';
+		// console.log('salam');
+	};
 </script>
 
 <div class="row pb-2">
 	<div class="col">
-		<h5 class="d-inline">Add New Order</h5>
+		{#if mode == 'Add'}
+			<h5 class="d-inline">Add New Order</h5>
+		{:else}
+			<h5 class="d-inline">Edit Order</h5>
+			&nbsp;
+			<a
+				class="btn btn-primary btn-sm"
+				href="/"
+				on:click|preventDefault={async () => {
+					// window.location.replace(`${base}/admin/addNewOrder`);
+					goto(`${base}/admin/addNewOrder`);
+					getpost = apiData({ action: 'admin/addNewOrder' }, _datases.user);
+					orderid = (await getpost).post;
+					itemLists = [];
+					feeLists = [];
+					ordernotes = [];
+					ordertotal = 0;
+					feetotal = 0;
+					mode = 'Add';
+				}}>Add order</a
+			>
+		{/if}
 	</div>
 </div>
 
@@ -277,12 +339,37 @@
 									<tr>
 										<td colspan="5" />
 									</tr>
-									{#each feeLists as feeList}
+									{#each feeLists as feeList, index}
 										<tr>
 											<th colspan="3" scope="row">{feeList.feeName}</th>
 
 											<td>RM {feeList.feeCost}</td>
-											<td>cc</td>
+											<td
+												><a
+													href="/"
+													on:click|preventDefault={() => {
+														// alert('edit');
+														fields.feeIndex = index;
+														fields.feeCost = feeList.feeCost;
+														(function ($) {
+															$('#modalFee').modal('show');
+														})(jQuery);
+													}}><i class="fa fa-edit" /></a
+												>&nbsp;<a
+													href="/"
+													class="text-danger"
+													on:click|preventDefault={() => {
+														if (confirm('Are Your sure?') == true) {
+															feeLists = feeLists.filter(function (el, i) {
+																return i != index;
+															});
+															feetotal = 0;
+														} else {
+															return;
+														}
+													}}><i class="fa fa-trash-o" /></a
+												></td
+											>
 										</tr>
 										{incrementCount(0, parseFloat(feeList.feeCost))}
 									{/each}
@@ -349,7 +436,10 @@
 							<option value="send_order_details">Email invoice / order details to customer</option>
 							<option value="send_order_details_admin">Resend new order notification</option>
 						</select>
-						<button type="submit" class="btn btn-primary mt-2">Created</button>
+
+						<a class="btn btn-primary mt-2" href="/" on:click|preventDefault={() => updateOrder()}
+							>{mode == 'Add' ? 'Create' : 'Update'}</a
+						>
 					</div>
 				</div>
 			</div>
