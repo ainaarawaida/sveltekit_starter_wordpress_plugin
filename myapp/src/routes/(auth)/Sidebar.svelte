@@ -20,9 +20,7 @@
 		<div class="badge-bottom">
 			<span class="badge badge-primary">{_datases?.user?.roles?.[0]}</span>
 		</div>
-		<a href="user-profile.html">
-			<h6 class="mt-3 f-14 f-w-600">{_datases?.user?.user_display_name}</h6></a
-		>
+		<a href="/"> <h6 class="mt-3 f-14 f-w-600">{_datases?.user?.user_display_name}</h6></a>
 		<p class="mb-0 font-roboto">&nbsp;</p>
 		<ul>
 			<li>

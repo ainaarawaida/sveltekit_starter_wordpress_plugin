@@ -72,7 +72,7 @@
 								<input id="checkbox1" type="checkbox" />
 								<label for="checkbox1">Remember password</label>
 							</div>
-							<a class="link" href="forget-password.html">Forgot password?</a>
+							<a class="link" href="/">Forgot password?</a>
 						</div>
 						<div class="form-group">
 							<button class="btn btn-primary btn-block" type="submit">Sign in</button>
@@ -104,7 +104,7 @@
 								</li>
 							</ul>
 						</div>
-						<p>Don't have account?<a class="ms-2" href="log-in.html">Create Account</a></p>
+						<p>Don't have account?<a class="ms-2" href="/">Create Account</a></p>
 					</form>
 				</div>
 			</div>

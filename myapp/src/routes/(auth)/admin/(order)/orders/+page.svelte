@@ -3,8 +3,9 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { apiData } from '$lib/apiData.js';
 	import { assets, base } from '$app/paths';
+	import { browser } from '$app/environment';
 	let _datases;
-	let postdata = '';
+	let postdata = [];
 	let mydatatablevar;
 	let orderlist = [];
 
@@ -13,112 +14,121 @@
 		let getpost = apiData({ action: 'admin/orders' }, _datases.user);
 		postdata = (await getpost).post;
 		console.log('postdata', postdata);
-		mydatatablevar.clear().rows.add(postdata).draw();
+		// mydatatablevar.clear().rows.add(postdata).draw();
 
-		(function ($) {
-			mydatatablevar = $('#mydatatable').DataTable({
-				ordering: true,
-				dom: 'Bfrtip',
-				select: true,
-				scrollX: true,
-				scrollY: '500px',
-				scrollCollapse: true,
-				lengthMenu: [
-					[10, 25, 50, -1],
-					['10 rows', '25 rows', '50 rows', 'Show all']
-				],
-				buttons: ['csv', 'excel', 'pdf', 'print', 'colvis', 'pageLength'],
-				initComplete: function (settings, json) {
-					$('#loading').hide();
-				},
-				data: orderlist,
-				columns: [
-					{
-						title: `Check All &nbsp;<input class="form-check-input selectDataAll" type="checkbox" value="">`,
-						data: function (row, type, val, meta) {
-							return meta.row + 1;
-						},
-						render: function (data, type, row, meta) {
-							return '<input class="form-check-input selectData" type="checkbox" value="">';
-						}
-					},
-					{
-						title: 'Order',
-						data: function (row, type, val, meta) {
-							// console.log("row", meta.row);
-							return meta.row + 1;
-						}
-					},
-					{
-						title: 'Date',
-						data: function (row, type, val, meta) {
-							return row.post_date;
-						},
-						render: function (data, type, row, meta) {
-							return data;
-						}
-					},
-					{
-						title: 'Status',
-						data: function (row, type, val, meta) {
-							return row.post_status;
-						},
-						render: function (data, type, row, meta) {
-							return data;
-						}
-					},
-					{
-						title: 'Total',
-						data: function (row, type, val, meta) {
-							return row._order_total;
-						},
-						render: function (data, type, row, meta) {
-							return data;
-						}
-					},
-					{
-						title: 'Actions',
-						data: function (row, type, val, meta) {
-							return meta.row + 1;
-						},
-						render: function (data, type, row, meta) {
-							return '<a href="' + data + '">Download</a>';
-						}
-					}
-				],
-				pageLength: -1
-			});
+		let interval = setInterval(() => {
+			if (window.finishload) {
+				clearInterval(interval);
+				//////////////////////
+				// code start
 
-			document.querySelector('.selectDataAll').addEventListener('change', function (e) {
-				let alldata = mydatatablevar.rows().data().toArray();
-				if (e.target.closest('.selectDataAll')) {
-					let getval = e.target.checked;
-					let getdata = document.querySelectorAll('.selectData');
-					for (let a = 0; a < getdata.length; a++) {
-						if (getval) {
-							// getdata[a].setAttribute('checked', 'true');
-							getdata[a].checked = true;
-						} else {
-							// getdata[a].removeAttribute('checked');
-							getdata[a].checked = false;
-						}
-					}
-				}
-			});
+				(function ($) {
+					mydatatablevar = $('#mydatatable').DataTable({
+						ordering: true,
+						dom: 'Bfrtip',
+						select: true,
+						scrollX: true,
+						scrollY: '500px',
+						scrollCollapse: true,
+						lengthMenu: [
+							[10, 25, 50, -1],
+							['10 rows', '25 rows', '50 rows', 'Show all']
+						],
+						buttons: ['csv', 'excel', 'pdf', 'print', 'colvis', 'pageLength'],
+						initComplete: function (settings, json) {
+							$('#loading').hide();
+						},
+						data: postdata,
+						columns: [
+							{
+								title: `Check All &nbsp;<input class="form-check-input selectDataAll" type="checkbox" value="">`,
+								data: function (row, type, val, meta) {
+									return meta.row + 1;
+								},
+								render: function (data, type, row, meta) {
+									return '<input class="form-check-input selectData" type="checkbox" value="">';
+								}
+							},
+							{
+								title: 'Order',
+								data: function (row, type, val, meta) {
+									// console.log("row", meta.row);
+									return meta.row + 1;
+								}
+							},
+							{
+								title: 'Date',
+								data: function (row, type, val, meta) {
+									return row.post_date;
+								},
+								render: function (data, type, row, meta) {
+									return data;
+								}
+							},
+							{
+								title: 'Status',
+								data: function (row, type, val, meta) {
+									return row.post_status;
+								},
+								render: function (data, type, row, meta) {
+									return data;
+								}
+							},
+							{
+								title: 'Total',
+								data: function (row, type, val, meta) {
+									return row._order_total;
+								},
+								render: function (data, type, row, meta) {
+									return data;
+								}
+							},
+							{
+								title: 'Actions',
+								data: function (row, type, val, meta) {
+									return meta.row + 1;
+								},
+								render: function (data, type, row, meta) {
+									return '<a href="' + data + '">Download</a>';
+								}
+							}
+						],
+						pageLength: -1
+					});
 
-			mydatatablevar.on('change', 'td', function (e) {
-				if (e.target.closest('.selectData')) {
-					let newdata = mydatatablevar.row(this).data();
-					let thisindex = mydatatablevar.row(this).index();
-					console.log('newdata', newdata);
-				}
-			});
-		})(jQuery);
+					document.querySelector('.selectDataAll').addEventListener('change', function (e) {
+						let alldata = mydatatablevar.rows().data().toArray();
+						if (e.target.closest('.selectDataAll')) {
+							let getval = e.target.checked;
+							let getdata = document.querySelectorAll('.selectData');
+							for (let a = 0; a < getdata.length; a++) {
+								if (getval) {
+									// getdata[a].setAttribute('checked', 'true');
+									getdata[a].checked = true;
+								} else {
+									// getdata[a].removeAttribute('checked');
+									getdata[a].checked = false;
+								}
+							}
+						}
+					});
+
+					mydatatablevar.on('change', 'td', function (e) {
+						if (e.target.closest('.selectData')) {
+							let newdata = mydatatablevar.row(this).data();
+							let thisindex = mydatatablevar.row(this).index();
+							console.log('newdata', newdata);
+						}
+					});
+				})(jQuery);
+				// code end
+				//////////////////////
+			}
+		}, 100);
 	});
 	onDestroy(() => {
-		let mytableremove = document.querySelector('#mydatatable_wrapper');
-		if (mytableremove) {
-			mytableremove.remove();
+		if (browser) {
+			document.querySelector('#mydatatable_wrapper').remove();
 		}
 	});
 

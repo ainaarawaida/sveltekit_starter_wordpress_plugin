@@ -50,32 +50,41 @@
 		}
 		// getProduct = [{ id: '-1', text: 'Search For a Product..' }, ...getProduct];
 		// console.log('getProduct', getProduct);
+		let interval = setInterval(() => {
+			if (window.finishload) {
+				clearInterval(interval);
+				//////////////////////
+				// code start
+				(function ($) {
+					$('#customer').select2({
+						data: customers,
+						tags: false,
+						placeholder: 'Guest',
+						allowClear: true
+					});
 
-		(function ($) {
-			$('#customer').select2({
-				data: customers,
-				tags: false,
-				placeholder: 'Guest',
-				allowClear: true
-			});
+					$('#productName').select2({
+						data: getProduct,
+						tags: false,
+						dropdownParent: $('#exampleModal'),
+						placeholder: 'Search For a Product..',
+						allowClear: true
+					});
 
-			$('#productName').select2({
-				data: getProduct,
-				tags: false,
-				dropdownParent: $('#exampleModal'),
-				placeholder: 'Search For a Product..',
-				allowClear: true
-			});
+					$('#productName').on('change', function (e) {
+						fields.productName = e.target.value;
+						if (e.target.value) {
+							e.target.removeAttribute('required');
+						} else {
+							e.target.setAttribute('required', 'required');
+						}
+					});
+				})(jQuery);
 
-			$('#productName').on('change', function (e) {
-				fields.productName = e.target.value;
-				if (e.target.value) {
-					e.target.removeAttribute('required');
-				} else {
-					e.target.setAttribute('required', 'required');
-				}
-			});
-		})(jQuery);
+				// code end
+				//////////////////////
+			}
+		}, 100);
 
 		document.querySelector('.addItemsBtn').addEventListener('click', function (e) {
 			document.querySelector('#tab1').classList.toggle('d-none');
@@ -90,16 +99,6 @@
 			document.querySelector('#tab2').classList.toggle('d-none');
 		});
 	});
-
-	let interval = setInterval(() => {
-		if (window.finishload) {
-			clearInterval(interval);
-		}
-	}, 100);
-
-	// $: if (pageload == true) {
-	// 	document.querySelector('.loader-wrapper').classList.remove('d-block');
-	// }
 
 	const submitHandler = async () => {
 		console.log('productIndex', fields.productIndex);
@@ -245,10 +244,10 @@
 												><a
 													href="/"
 													on:click|preventDefault={() => {
-														// alert('edit');
 														fields.productIndex = index;
 														fields.productName = itemList.productID;
 														fields.productQuantity = itemList.productQuantity;
+
 														(function ($) {
 															$('#productName').val(fields.productName).trigger('change');
 															$('#exampleModal').modal('show');
