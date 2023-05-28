@@ -110,13 +110,13 @@ class Sveltekitauth_Public {
 		
 		
 		global $wp_styles;
-			foreach( $wp_styles->queue as $style ) :
-				$exclude = array("admin-bar","wp-block-library","global-styles","wp-webfonts","select2",
-				"woocommerce-layout","woocommerce-smallscreen","woocommerce-general","woocommerce-inline") ;
-				if (in_array($style, $exclude))
-					continue;
-				
-			endforeach;
+		foreach( $wp_styles->queue as $style ) :
+			$exclude = array("admin-bar","wp-block-library","global-styles","wp-webfonts","select2",
+			"woocommerce-layout","woocommerce-smallscreen","woocommerce-general","woocommerce-inline") ;
+			if (in_array($style, $exclude))
+				continue;
+			
+		endforeach;
 
 
 	}

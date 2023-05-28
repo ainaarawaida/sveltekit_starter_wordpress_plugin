@@ -1,7 +1,12 @@
 <script>
 	import { assets, base } from '$app/paths';
 	import { page } from '$app/stores';
-	let _datases = JSON.parse(sessionStorage.getItem('_datases'));
+	import { onMount, onDestroy, tick } from 'svelte';
+
+	let _datases;
+	onMount(async () => {
+		_datases = JSON.parse(sessionStorage.getItem('_datases'));
+	});
 </script>
 
 <!-- Page Sidebar Start-->
