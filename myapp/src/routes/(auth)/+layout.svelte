@@ -88,6 +88,35 @@
 		);
 		await loadScript(`${assets}/assets/js/script.js`, `script.js`);
 		await loadScript(`${assets}/assets/js/theme-customizer/customizer.js`, `customizer.js`);
+
+		/////////////////////////////////
+		//Datatable start
+		await loadScript(
+			`${assets}/assets/js/jquery.dataTables.min.js`,
+			`${assets}jquery.dataTables.min.js`
+		);
+		await loadScript(`${assets}/assets/js/dataTables.buttons.min.js`, `dataTables.buttons.min.js`);
+		await loadScript(`${assets}/assets/js/jszip.min.js`, `jszip.min.js`);
+		await loadScript(`${assets}/assets/js/pdfmake.min.js`, `pdfmake.min.js`);
+		await loadScript(`${assets}/assets/js/vfs_fonts.js`, `vfs_fonts.js`);
+		await loadScript(`${assets}/assets/js/buttons.html5.min.js`, `buttons.html5.min.js`);
+		await loadScript(`${assets}/assets/js/buttons.print.min.js`, `buttons.print.min.js`);
+		await loadScript(`${assets}/assets/js/dataTables.select.min.js`, `dataTables.select.min.js`);
+		await loadScript(`${assets}/assets/js/buttons.colVis.min.js`, `buttons.colVis.min.js`);
+
+		//Datatable end
+		/////////////////////////////////
+
+		/////////////////////////////////
+		//select2 start
+
+		await loadScript(`${assets}/assets/js/select2/select2.full.min.js`, `select2.full.min.js`);
+
+		//select2 end
+		/////////////////////////////////
+
+		// finishload = true;
+		window.finishload = true;
 	});
 </script>
 
@@ -116,6 +145,10 @@
 	<link id="color" rel="stylesheet" href="{assets}/assets/css/color-1.css" media="screen" />
 	<!-- Responsive css-->
 	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/datatables.css" />
+	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/datatable-extension.css" />
+	<!-- Select2 css-->
+	<link rel="stylesheet" type="text/css" href="{assets}/assets/css/select2.css" />
 </svelte:head>
 
 <!-- Loader starts-->

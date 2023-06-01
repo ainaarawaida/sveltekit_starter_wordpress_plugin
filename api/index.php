@@ -21,6 +21,8 @@ function mypwp_check_user(){
     
     if($_POST['action'] && $_POST['action'] === 'GetPost'){
         require_once SVELTEKITAUTH_PATH . 'api/GetPost.php' ;
+    }else{
+        require_once SVELTEKITAUTH_PATH . 'api/'.$_POST['action'].'.php' ;
     }
 
 

@@ -20,12 +20,10 @@
 	<div class="main-header-right row m-0">
 		<div class="main-header-left">
 			<div class="logo-wrapper">
-				<a href="index.html"
-					><img class="img-fluid" src="{assets}/assets/images/logo/logo.png" alt="" /></a
-				>
+				<a href="/"><img class="img-fluid" src="{assets}/assets/images/logo/logo.png" alt="" /></a>
 			</div>
 			<div class="dark-logo-wrapper">
-				<a href="index.html"
+				<a href="/"
 					><img class="img-fluid" src="{assets}/assets/images/logo/dark-logo.png" alt="" /></a
 				>
 			</div>
