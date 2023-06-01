@@ -9,8 +9,10 @@
 	let _datases;
 	let postdata = '';
 	let orderid;
+	let now = new Date();
+	now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
 	let fields = {
-		dateCreated: '',
+		dateCreated: now.toISOString().slice(0, 16),
 		customer: '',
 		productName: '',
 		productQuantity: '',
@@ -53,15 +55,12 @@
 			customers[a].id = customers[a].ID;
 			customers[a].text = customers[a].data.display_name;
 		}
-		// customers = [{ id: '-1', text: 'Guest' }, ...customers];
-		// console.log('customers', customers);
 
 		for (let a = 0; a < getProduct.length; a++) {
 			getProduct[a].id = getProduct[a].ID;
 			getProduct[a].text = getProduct[a].post_title;
 		}
-		// getProduct = [{ id: '-1', text: 'Search For a Product..' }, ...getProduct];
-		// console.log('getProduct', getProduct);
+
 		let interval = setInterval(() => {
 			if (window.finishload) {
 				clearInterval(interval);
@@ -228,7 +227,7 @@
 						</div>
 						<div class="row">
 							<div class="col">
-								<label for="dateCreated">Date Created</label>
+								<label for="dateCreated">Date Created {fields.dateCreated}</label>
 								<div class="input-group">
 									<input
 										class="form-control"
