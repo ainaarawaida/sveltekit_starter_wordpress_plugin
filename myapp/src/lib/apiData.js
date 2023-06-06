@@ -4,10 +4,10 @@ import { datases } from '$lib/store.js';
 import { assets, base } from '$app/paths';
 let _datases = {};
 
-const apiData = async (inputs, user) =>{
-    if(window.jQuery){
+const apiData = async (inputs, user) => {
+    if (window.jQuery) {
         (function ($) {
-            $('.loader-wrapper').fadeOut('slow', function() {
+            $('.loader-wrapper').fadeOut('slow', function () {
                 $(this).show();
             });
         })(jQuery);
@@ -16,8 +16,8 @@ const apiData = async (inputs, user) =>{
     let dataArray = new FormData();
     let dataHeader = new Headers();
 
-    for (let input of Object.keys(inputs, user) ){
-      dataArray.append(input, inputs[input]);
+    for (let input of Object.keys(inputs, user)) {
+        dataArray.append(input, inputs[input]);
     }
     dataArray.append("user_email", user.user_email);
     dataHeader.append("Authorization", `Bearer ${user.token}`);
@@ -31,28 +31,28 @@ const apiData = async (inputs, user) =>{
         }
     );
 
-    if(window.jQuery){
+    if (window.jQuery) {
         (function ($) {
-            $('.loader-wrapper').fadeOut('slow', function() {
+            $('.loader-wrapper').fadeOut('slow', function () {
                 $(this).hide();
             });
         })(jQuery);
     }
 
-    
+
     if (getFetch.ok == true) {
         let getFetchData = await getFetch.json();
-        return JSON.parse(getFetchData) ;
+        return JSON.parse(getFetchData);
     } else {
-        return "error" ;
+        return "error";
     }
 
 }
 
-const apiDataLogin = async (username, password) =>{
+const apiDataLogin = async (username, password) => {
 
     (function ($) {
-        $('.loader-wrapper').fadeOut('slow', function() {
+        $('.loader-wrapper').fadeOut('slow', function () {
             $(this).show();
         });
     })(jQuery);
@@ -64,8 +64,7 @@ const apiDataLogin = async (username, password) =>{
     dataArray.append('password', password);
 
     let getFetch = await fetch(
-        `${import.meta.env.VITE_AUTHURL}/wp-json/jwt-auth/v1/token?username=${
-            username
+        `${import.meta.env.VITE_AUTHURL}/wp-json/jwt-auth/v1/token?username=${username
         }&password=${password}`,
         {
             method: 'POST',
@@ -74,7 +73,7 @@ const apiDataLogin = async (username, password) =>{
     );
 
     (function ($) {
-        $('.loader-wrapper').fadeOut('slow', function() {
+        $('.loader-wrapper').fadeOut('slow', function () {
             $(this).hide();
         });
     })(jQuery);
@@ -85,20 +84,20 @@ const apiDataLogin = async (username, password) =>{
             _datases = value || {};
             _datases.auth = true;
             _datases.user = getFetchData;
-            sessionStorage.setItem('_datases', JSON.stringify(_datases));
+            localStorage.setItem('_datases', JSON.stringify(_datases));
             return _datases;
         });
-     
-        if(getFetchData.roles.includes('administrator')){
+
+        if (getFetchData.roles.includes('administrator')) {
             goto(`${base}/admin/dashboard`);
-        }else{
+        } else {
             goto(`${base}/user/dashboard`);
         }
-      
+
     } else {
-        return  getFetchData;
+        return getFetchData;
     }
 
 }
 
-export {apiData,apiDataLogin}
+export { apiData, apiDataLogin }

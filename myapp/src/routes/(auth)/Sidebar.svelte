@@ -5,7 +5,7 @@
 
 	let _datases;
 	onMount(async () => {
-		_datases = JSON.parse(sessionStorage.getItem('_datases'));
+		_datases = JSON.parse(localStorage.getItem('_datases'));
 	});
 </script>
 

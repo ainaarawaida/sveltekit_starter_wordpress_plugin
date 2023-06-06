@@ -1,0 +1,103 @@
+#orangeBar {
+    background: linear-gradient(to right,
+            #6d8ce1,
+            #6b81ca,
+            #b48e7e,
+            #e89148,
+            #e89148,
+            #b48e7e,
+            #6b87d5);
+    height: 9px;
+    margin-right: 0.15rem !important;
+    margin-left: 0.15rem !important;
+}
+
+.overlayxp {
+    opacity: 0.8;
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1031;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: #004e98;
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+.xp1 {
+    background: linear-gradient(rgb(24, 104, 206) 0%,
+            rgb(14, 96, 203) 12%,
+            rgb(14, 96, 203) 20%,
+            rgb(17, 100, 207) 32%,
+            rgb(22, 103, 207) 33%,
+            rgb(27, 108, 211) 47%,
+            rgb(30, 112, 217) 54%,
+            rgb(36, 118, 220) 60%,
+            rgb(41, 122, 224) 65%,
+            rgb(52, 130, 227) 77%,
+            rgb(55, 134, 229) 79%,
+            rgb(66, 142, 233) 90%,
+            rgb(71, 145, 235) 100%);
+    margin-top: -5px;
+}
+
+.xp0 {
+    -moz-box-align: center;
+    align-items: center;
+    background-color: rgb(66, 130, 214);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.xp2 {
+    font-size: 14px;
+    font-weight: 700;
+    text-shadow: rgba(0, 0, 0, 0.7) 1px 1px;
+    color: rgb(255, 255, 255);
+}
+
+.xp3 {
+    background: linear-gradient(to right, #6286e1, #6286e1, #9fbbf6, #7899e9);
+}
+
+.xp4 {
+    margin-right: 0.15rem !important;
+    margin-left: 0.15rem !important;
+    height: 100px;
+}
+
+.winxpmenu {
+    padding-left: 2px;
+
+}
+
+.winxpmenu div {
+    font-weight: 700;
+
+}
+
+.winxpmenu span {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.winxpmainmenuright {
+    background-color: rgb(203, 227, 255);
+    border-left: 1px solid rgba(58, 58, 255, 0.37);
+    height: 300px;
+    line-height: 1.5;
+}
+
+.winxpmainmenuleft {
+    background-color: #eee;
+    border-left: 1px solid rgba(58, 58, 255, 0.37);
+    height: 300px;
+    line-height: 1;
+
+}
