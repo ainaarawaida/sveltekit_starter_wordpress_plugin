@@ -101,9 +101,9 @@ class Sveltekitauth_Public {
 		global $wp, $wp_scripts;
 		foreach( $wp_scripts->queue as $script ) :
 			
-			$exclude = array("admin-bar","woocommerce", "wc-checkout",
+			$include = array("admin-bar","woocommerce", "wc-checkout",
 			"selectWoo", "wc-add-to-cart","wc-cart-fragments", "sveltekit") ;
-			if (in_array($script, $exclude))
+			if (in_array($script, $include))
 				continue;
 		wp_dequeue_script( $script );
 		endforeach;
@@ -111,11 +111,11 @@ class Sveltekitauth_Public {
 		
 		global $wp_styles;
 		foreach( $wp_styles->queue as $style ) :
-			$exclude = array("admin-bar","wp-block-library","global-styles","wp-webfonts","select2",
+			$include = array("admin-bar","wp-block-library","global-styles","wp-webfonts","select2",
 			"woocommerce-layout","woocommerce-smallscreen","woocommerce-general","woocommerce-inline") ;
-			if (in_array($style, $exclude))
+			if (in_array($style, $include))
 				continue;
-			
+		wp_dequeue_style( $style );
 		endforeach;
 
 

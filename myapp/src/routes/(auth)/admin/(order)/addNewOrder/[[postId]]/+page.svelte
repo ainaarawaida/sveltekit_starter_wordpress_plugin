@@ -36,7 +36,7 @@
 	// let pageload = false;
 
 	onMount(async () => {
-		_datases = JSON.parse(sessionStorage.getItem('_datases'));
+		_datases = JSON.parse(localStorage.getItem('_datases'));
 		user_display_name = _datases?.user?.user_display_name;
 
 		if ($page.params?.postId) {
