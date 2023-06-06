@@ -27,7 +27,7 @@
 				class="img-fluid border border-white border-2 mx-1 rounded-3"
 				alt=""
 				width="50px;"
-			/> <span class="xp2">LPPSA User</span>
+			/> <span class="xp2">User</span>
 		</div>
 	</div>
 </div>

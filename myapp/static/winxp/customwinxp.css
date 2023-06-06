@@ -84,14 +84,16 @@
 
 .winxpmenu span {
     font-size: 11px;
-    color: rgba(0, 0, 0, 0.4);
 }
+
 
 .winxpmainmenuright {
     background-color: rgb(203, 227, 255);
     border-left: 1px solid rgba(58, 58, 255, 0.37);
     height: 300px;
     line-height: 1.5;
+    padding: 3px;
+
 }
 
 .winxpmainmenuleft {
@@ -99,5 +101,22 @@
     border-left: 1px solid rgba(58, 58, 255, 0.37);
     height: 300px;
     line-height: 1;
+    padding: 3px;
+}
 
+
+.winxpmainmenuleft div.row:hover {
+    background-color: rgb(47, 113, 205);
+    color: #eee !important;
+    cursor: pointer;
+}
+
+.winxpmainmenuright div.row:hover {
+    background-color: rgb(47, 113, 205);
+    color: #eee !important;
+    cursor: pointer;
+}
+
+div.float-end.p-1 div.d-inline.btn:hover {
+    background-color: rgb(47, 113, 205);
 }
