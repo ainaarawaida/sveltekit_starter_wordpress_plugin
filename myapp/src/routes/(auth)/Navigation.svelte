@@ -23,7 +23,7 @@
 	<div class="col">
 		<div class="m-1">
 			<img
-				src="{base}/winxp/images/xpIcons/user1.png"
+				src="{assets}/winxp/images/xpIcons/user1.png"
 				class="img-fluid border border-white border-2 mx-1 rounded-3"
 				alt=""
 				width="50px;"

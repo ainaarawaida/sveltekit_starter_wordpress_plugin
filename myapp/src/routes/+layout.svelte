@@ -14,10 +14,17 @@
 		localStorage.setItem('assetEnv', assets);
 
 		await loadScript(`${assets}/assets/js/jquery-3.5.1.min.js`, `jquery-3.5.1.min.js`);
+		await loadScript(`https://code.jquery.com/ui/1.13.2/jquery-ui.js`, `jquery-ui.js`);
+
 		await loadScript(
 			`https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js`,
 			`bootstrap.bundle.min.js`
 		);
+
+		await loadScript(`${assets}/winxp/js/interactive.min.js`, `interactive.min.js`);
+
+		await loadScript(`${assets}/winxp/js/winbox.min.js`, `winbox.min.js`);
+
 		window.finishload = true;
 
 		unsubscribe_data = datases.subscribe((value) => {
@@ -47,7 +54,11 @@
 	/>
 
 	<link rel="stylesheet" href="https://unpkg.com/xp.css" />
-	<link rel="stylesheet" href="{assets}/winxp/customwinxp.css" />
+	<link rel="stylesheet" href="{assets}/winxp/css/customwinxp.css" />
+
+	<link href="{assets}/winxp/css/interactive.min.css" rel="stylesheet" />
+
+	<link href="{assets}/winxp/css/winbox.min.css" rel="stylesheet" />
 </svelte:head>
 
 <slot />

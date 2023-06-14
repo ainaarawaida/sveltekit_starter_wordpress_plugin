@@ -1,0 +1,200 @@
+/**
+ * Minified by jsDelivr using clean-css v4.2.1.
+ * Original file: /gh/interactiveJS/interactiveJS@2.0.1/src/css/interactive.css
+ * 
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+body,
+html {
+    overflow: hidden;
+}
+
+.interactive {
+    width: 200px;
+    height: 150px;
+    background-color: #faebd7;
+}
+
+.draggable {
+    position: absolute;
+}
+
+.parentResize {
+    overflow: hidden;
+    position: absolute;
+    display: grid;
+    grid-template-areas: "d c b" "a i e" "f g h";
+}
+
+.resizable {
+    grid-area: i;
+}
+
+.left {
+    grid-area: a;
+}
+
+.right {
+    grid-area: e;
+}
+
+.top {
+    grid-area: c;
+}
+
+.bottom {
+    grid-area: g;
+}
+
+.upperLeft {
+    grid-area: d;
+}
+
+.upperRight {
+    grid-area: b;
+}
+
+.lowerLeft {
+    grid-area: f;
+}
+
+.lowerRight {
+    grid-area: h;
+}
+
+.left:hover,
+.right:hover {
+    cursor: ew-resize;
+}
+
+.bottom:hover,
+.top:hover {
+    cursor: ns-resize;
+}
+
+.lowerRight:active,
+.lowerRight:hover,
+.upperLeft:hover {
+    cursor: nwse-resize;
+}
+
+.lowerLeft:active,
+.lowerLeft:hover,
+.upperRight:hover {
+    cursor: nesw-resize;
+}
+
+.btnContainer {
+    float: right;
+}
+
+.mmcBtn {
+    float: right;
+    width: 10px;
+    height: 20px;
+    margin: 0 4px 0 3px;
+    padding: 0;
+    border: none;
+    background: 0 0;
+    outline: 0;
+}
+
+.svgIcon {
+    width: auto;
+    height: 50%;
+}
+
+.path {
+    fill: #303761;
+}
+
+.dragPath {
+    fill: #faebd7;
+}
+
+#minimizeZone {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    overflow-x: hidden;
+}
+
+.dropdownBtn,
+.minimizedItem {
+    float: right;
+    height: 100%;
+    background-color: #303761;
+}
+
+.minimizedItem {
+    display: table;
+    width: 150px;
+    margin-right: 0;
+    margin-left: 2px;
+}
+
+.minimizedTitle {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #faebd7;
+}
+
+.dropdownBtn {
+    width: 20px;
+    padding: 0;
+    border: none;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #faebd7;
+    outline: 0;
+}
+
+#dropdownList {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 100px;
+    background-color: rgba(48, 55, 97, 0.473);
+    overflow-x: hidden;
+}
+
+.dropdownItem {
+    padding: 4px;
+    height: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #faebd7;
+    overflow: hidden;
+}
+
+.dropdownItem,
+.dropdownItemx,
+.dropdownList {
+    cursor: default;
+}
+
+.dropdownItem:hover {
+    background-color: rgba(62, 68, 102, 0.473);
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #303761;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #faebd7;
+    border-radius: 3px;
+}
+
+/*# sourceMappingURL=/sm/fcba1d7d0ca9dfdb1b0e11bb9917d4dce0d06f5f7abf92d4cfa6bc017fc8e412.map */
