@@ -12,6 +12,9 @@
 		let interval = setInterval(() => {
 			if (window.finishload) {
 				clearInterval(interval);
+
+				document.querySelector('.wb-title').innerHTML =
+					document.querySelector('.titleWindow').innerHTML;
 			}
 		}, 100);
 	});
@@ -20,6 +23,6 @@
 <div class="p-1">
 	<div class="titleWindow d-none">Dashboard</div>
 	<div class="row g-0">
-		<div class="col">dsdsdsd</div>
+		<div class="col">Dashboard</div>
 	</div>
 </div>

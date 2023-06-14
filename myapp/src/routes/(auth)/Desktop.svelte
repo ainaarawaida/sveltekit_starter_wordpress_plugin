@@ -38,32 +38,61 @@
 		console.log('getpost', await getpost);
 	};
 
-	let openApp = (url) => {
-		if (document.querySelector('.wb-header')) {
-			mywinbox.close(true);
-		}
-
-		let title = document.querySelector('.titleWindow').innerHTML;
-		mywinbox = new WinBox(title, {
-			mount: document.getElementById('dasboard_paparan'),
-			index: 1033,
-			top: 5,
-			right: 5,
-			bottom: 5,
-			left: 5,
-			onminimize: function () {
-				document.querySelector(`#${this.id}`).style.left = '120px';
-			},
-			onmaximize: function () {
-				document.querySelector(`#${this.id}`).style.left = '5px';
+	let openApp = async (url) => {
+		if ($page.url.pathname == url) {
+			if (document.querySelector('.wb-header')) {
+				mywinbox.close(true);
 			}
-		});
 
-		// if ($page.url.pathname == url) {
-		// 	window.location.href = `${base}${url}`;
-		// } else {
-		// 	goto(`${base}${url}`);
-		// }
+			let title = '';
+			if (document.querySelector('.titleWindow')) {
+				title = document.querySelector('.titleWindow').innerHTML
+					? document.querySelector('.titleWindow').innerHTML
+					: '';
+
+				mywinbox = new WinBox(title, {
+					mount: document.getElementById('dasboard_paparan'),
+					index: 1033,
+					top: 5,
+					right: 5,
+					bottom: 5,
+					left: 5,
+					onminimize: function () {
+						document.querySelector(`#${this.id}`).style.left = '120px';
+					},
+					onmaximize: function () {
+						document.querySelector(`#${this.id}`).style.left = '5px';
+					}
+				});
+			}
+		} else {
+			goto(`${base}${url}`);
+
+			if (document.querySelector('.wb-header')) {
+				mywinbox.close(true);
+			}
+			let title = '';
+			if (document.querySelector('.titleWindow')) {
+				title = document.querySelector('.titleWindow').innerHTML
+					? document.querySelector('.titleWindow').innerHTML
+					: '';
+
+				mywinbox = new WinBox(title, {
+					mount: document.getElementById('dasboard_paparan'),
+					index: 1033,
+					top: 5,
+					right: 5,
+					bottom: 5,
+					left: 5,
+					onminimize: function () {
+						document.querySelector(`#${this.id}`).style.left = '120px';
+					},
+					onmaximize: function () {
+						document.querySelector(`#${this.id}`).style.left = '5px';
+					}
+				});
+			}
+		}
 	};
 </script>
 
@@ -80,6 +109,14 @@
 	id="draggable"
 	class="d-inline ui-widget-content"
 	on:dblclick|preventDefault={() => openApp('/mycomputer')}
+>
+	<img src="{assets}/winxp/images/mycomputer.png" alt="" class="img-fluid" style="width:50px;" />
+</div>
+
+<div
+	id="draggable"
+	class="d-inline ui-widget-content"
+	on:dblclick|preventDefault={() => openApp('/admin/dashboard')}
 >
 	<img src="{assets}/winxp/images/mycomputer.png" alt="" class="img-fluid" style="width:50px;" />
 </div>
