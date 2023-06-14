@@ -37,7 +37,11 @@
 	<div class="row g-0">
 		<div class="col m-3">
 			<Desktop />
-			<div class="appendfield"><slot /></div>
+			<div id="paparan" style="display: none">
+				<div id="dasboard_paparan">
+					<slot />
+				</div>
+			</div>
 		</div>
 	</div>
 

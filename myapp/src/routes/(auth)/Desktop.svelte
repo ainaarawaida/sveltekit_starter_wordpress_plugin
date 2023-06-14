@@ -43,7 +43,8 @@
 			mywinbox.close(true);
 		}
 
-		mywinbox = new WinBox('Mount DOM', {
+		let title = document.querySelector('.titleWindow').innerHTML;
+		mywinbox = new WinBox(title, {
 			mount: document.getElementById('dasboard_paparan'),
 			index: 1033,
 			top: 5,

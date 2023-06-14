@@ -17,11 +17,9 @@
 	});
 </script>
 
-<div id="paparan" style="display: none">
-	<div id="dasboard_paparan">
-		<h1>Lorem Ipsum</h1>
-		<p>Lorem ipsum [...]</p>
-		<p>Duis autem vel [...]</p>
-		<p>Ut wisi enim [...]</p>
+<div class="p-1">
+	<div class="titleWindow d-none">Dashboard</div>
+	<div class="row g-0">
+		<div class="col">dsdsdsd</div>
 	</div>
 </div>
