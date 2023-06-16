@@ -14,7 +14,7 @@
 				clearInterval(interval);
 
 				document.querySelector('.wb-title').innerHTML =
-					document.querySelector('.titleWindow').innerHTML;
+					document?.querySelector('.titleWindow').innerHTML;
 			}
 		}, 100);
 	});

@@ -32,7 +32,7 @@
 
 <div
 	class="min-vh-100"
-	style="background-image: url('{assets}/winxp/images/Wallpapers/Azul.jpg');background-size: 100vw 100vh;"
+	style="background-image: url('{assets}/winxp/images/Wallpapers/bliss.jpg');background-size: 100vw 100vh;"
 >
 	<div class="row g-0">
 		<div class="col m-3">

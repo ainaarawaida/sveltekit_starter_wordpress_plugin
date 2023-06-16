@@ -14,12 +14,9 @@
 		localStorage.setItem('assetEnv', assets);
 
 		await loadScript(`${assets}/assets/js/jquery-3.5.1.min.js`, `jquery-3.5.1.min.js`);
-		await loadScript(`https://code.jquery.com/ui/1.13.2/jquery-ui.js`, `jquery-ui.js`);
+		await loadScript(`${assets}/winxp/js/jquery-ui.js`, `jquery-ui.js`);
 
-		await loadScript(
-			`https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js`,
-			`bootstrap.bundle.min.js`
-		);
+		await loadScript(`${assets}/winxp/js/bootstrap.bundle.min.js`, `bootstrap.bundle.min.js`);
 
 		await loadScript(`${assets}/winxp/js/interactive.min.js`, `interactive.min.js`);
 
@@ -48,12 +45,9 @@
 </script>
 
 <svelte:head>
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-	/>
+	<link href="{assets}/winxp/css/bootstrap.min.css" rel="stylesheet" />
 
-	<link rel="stylesheet" href="https://unpkg.com/xp.css" />
+	<link rel="stylesheet" href="{assets}/winxp/css/XP.css" />
 	<link rel="stylesheet" href="{assets}/winxp/css/customwinxp.css" />
 
 	<link href="{assets}/winxp/css/interactive.min.css" rel="stylesheet" />

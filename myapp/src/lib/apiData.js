@@ -79,6 +79,8 @@ const apiDataLogin = async (username, password) => {
     })(jQuery);
 
     let getFetchData = await getFetch.json();
+    console.log("getFetch", getFetch);
+    console.log("getFetchData", getFetchData)
     if (getFetch.ok == true) {
         datases.update((value) => {
             _datases = value || {};

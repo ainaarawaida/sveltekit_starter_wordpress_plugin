@@ -219,20 +219,28 @@ div.float-end.p-1 div.d-inline.btn:hover {
     background-size: 20px !important;
     background-position: center !important;
     opacity: 1 !important;
+    margin-right: -5px !important;
+    margin-left: -5px !important;
 }
 
 .wb-max {
     background-image: url('../images/min1.png') !important;
     background-size: 20px !important;
     opacity: 1 !important;
+    margin-right: -5px !important;
+    margin-left: -5px !important;
 }
 
 .wb-close {
     background-image: url('../images/min2.png') !important;
     background-size: 20px !important;
     opacity: 1 !important;
+
+    margin-left: -5px !important;
 }
 
 .wb-full {
     display: none;
+    margin-right: -5px !important;
+    margin-left: -5px !important;
 }

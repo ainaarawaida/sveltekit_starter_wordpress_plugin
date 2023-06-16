@@ -18,6 +18,7 @@
 
 				(function ($) {
 					$('#draggable').draggable();
+					$('#draggable2').draggable();
 				})(jQuery);
 			}
 		}, 100);
@@ -39,13 +40,13 @@
 	};
 
 	let openApp = async (url) => {
-		if ($page.url.pathname == url) {
-			if (document.querySelector('.wb-header')) {
+		if ($page?.url?.pathname == url) {
+			if (document?.querySelector('.wb-header')) {
 				mywinbox.close(true);
 			}
 
 			let title = '';
-			if (document.querySelector('.titleWindow')) {
+			if (document?.querySelector('.titleWindow')) {
 				title = document.querySelector('.titleWindow').innerHTML
 					? document.querySelector('.titleWindow').innerHTML
 					: '';
@@ -68,11 +69,11 @@
 		} else {
 			goto(`${base}${url}`);
 
-			if (document.querySelector('.wb-header')) {
+			if (document?.querySelector('.wb-header')) {
 				mywinbox.close(true);
 			}
 			let title = '';
-			if (document.querySelector('.titleWindow')) {
+			if (document?.querySelector('.titleWindow')) {
 				title = document.querySelector('.titleWindow').innerHTML
 					? document.querySelector('.titleWindow').innerHTML
 					: '';
@@ -111,12 +112,14 @@
 	on:dblclick|preventDefault={() => openApp('/mycomputer')}
 >
 	<img src="{assets}/winxp/images/mycomputer.png" alt="" class="img-fluid" style="width:50px;" />
+	<div class="text-light mb-3">My Computer</div>
 </div>
 
 <div
-	id="draggable"
+	id="draggable2"
 	class="d-inline ui-widget-content"
 	on:dblclick|preventDefault={() => openApp('/admin/dashboard')}
 >
 	<img src="{assets}/winxp/images/mycomputer.png" alt="" class="img-fluid" style="width:50px;" />
+	<div class="text-light mb-3">My Computer</div>
 </div>

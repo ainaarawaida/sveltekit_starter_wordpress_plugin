@@ -18,8 +18,10 @@
 		myModal.toggle();
 		document.querySelector('.overlayxp').classList.toggle('d-none');
 		let getpost = await apiDataLogin(fields.username, fields.password);
+
 		if (getpost) {
-			alert = `${getpost.message}`;
+			document.querySelector('.overlayxp').classList.toggle('d-none');
+			window.alert(`${getpost.message}`);
 		}
 	};
 
