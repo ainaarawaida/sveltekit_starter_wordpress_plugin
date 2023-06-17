@@ -90,7 +90,7 @@ const apiDataLogin = async (username, password) => {
             return _datases;
         });
 
-        if (getFetchData.roles.includes('administrator')) {
+        if (getFetchData.roles.includes('administrator') || getFetchData.roles.includes('subscriber')) {
             goto(`${base}/admin/dashboard`);
         } else {
             goto(`${base}/user/dashboard`);
