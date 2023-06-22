@@ -13,7 +13,7 @@
  * @package           Sveltekitauth
  *
  * @wordpress-plugin
- * Plugin Name:       sveltekitauth
+ * Plugin Name:       sveltekit
  * Plugin URI:        https://sveltekitauth
  * Description:       sveltekitauth
  * Version:           1.0.0
@@ -37,7 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'SVELTEKITAUTH_VERSION', '1.0.0' );
 define( 'SVELTEKITAUTH_PATH', plugin_dir_path( __FILE__ ) );
-define( 'SVELTEKITAUTH_URL', plugins_url('sveltekitauth') );
+define( 'SVELTEKITAUTH_URL', plugins_url('sveltekit') );
 
 /**
  * The code that runs during plugin activation.

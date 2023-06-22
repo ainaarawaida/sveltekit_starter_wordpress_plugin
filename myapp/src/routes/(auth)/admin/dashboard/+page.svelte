@@ -12,9 +12,6 @@
 		let interval = setInterval(() => {
 			if (window.finishload) {
 				clearInterval(interval);
-
-				document.querySelector('.wb-title').innerHTML =
-					document?.querySelector('.titleWindow').innerHTML;
 			}
 		}, 100);
 	});

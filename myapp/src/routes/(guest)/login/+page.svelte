@@ -12,36 +12,30 @@
 	let alert;
 	let myModal;
 	let unsubscribe_data_login;
+	import { loadScript } from '$lib/document.js';
 
 	const submitHandler = async () => {
 		alert = '';
-		myModal.toggle();
-		document.querySelector('.overlayxp').classList.toggle('d-none');
 		let getpost = await apiDataLogin(fields.username, fields.password);
 
 		if (getpost) {
-			document.querySelector('.overlayxp').classList.toggle('d-none');
 			window.alert(`${getpost.message}`);
 		}
 	};
 
 	onMount(async () => {
-		let interval = setInterval(() => {
+		let interval = setInterval(async () => {
 			if (window?.finishload) {
 				clearInterval(interval);
-				// myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-				// 	backdrop: 'static',
-				// 	keyboard: false
-				// });
-				myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+
+				await loadScript(`${assets}/assets/js/icons/feather-icon/feather.min.js`, `feather.min.js`);
+				await loadScript(
+					`${assets}/assets/js/icons/feather-icon/feather-icon.js`,
+					`feather-icon.js`
+				);
 
 				unsubscribe_data_login = data.subscribe((value) => {
 					_data = value;
-					if (_data?.loginform == 'user') {
-						myModal.toggle();
-					} else if (_data?.loginform == 'guest') {
-						myModal.toggle();
-					}
 				});
 			}
 		}, 100);
@@ -49,76 +43,91 @@
 
 	onDestroy(() => {
 		if (browser) {
-			unsubscribe_data_login();
+			unsubscribe_data_login;
 		}
 	});
 </script>
 
-<!-- Modal -->
-<div
-	class="modal fade"
-	id="exampleModal"
-	tabindex="-1"
-	aria-labelledby="exampleModalLabel"
-	aria-hidden="false"
->
-	<div class="modal-dialog">
-		<div class="window modal-content">
-			<div class="title-bar">
-				<div class="title-bar-text">Log On To System</div>
-			</div>
-			<div class="row g-0 xp4">
-				<div class="col xp3">
-					<img
-						src="{assets}/logo-my.png"
-						class="img-fluid mx-auto d-block mt-4"
-						style="width:100px;"
-						alt="logo"
-					/>
-				</div>
-			</div>
-			<div id="orangeBar" />
-			<form class="theme-form login-form" on:submit|preventDefault={submitHandler}>
-				<div class="window-body">
-					<div class="row m-2 g-1">
-						<div class="col-3">
-							<label class="text-end d-block" for="text21">PC User name:</label>
+<!-- page-wrapper Start-->
+<section class="mt-5">
+	<div class="container-fluid p-0">
+		<div class="row">
+			<div class="col-12">
+				<div class="login-card">
+					<form class="theme-form login-form" on:submit|preventDefault={submitHandler}>
+						<h4>Login</h4>
+						<h6>Welcome back! Log in to your account.</h6>
+						<div class="form-group">
+							<label>Email Address</label>
+							<div class="input-group">
+								<span class="input-group-text"><i class="icon-email" /></span>
+								<input
+									class="form-control"
+									type="text"
+									id="username"
+									placeholder=""
+									bind:value={fields.username}
+									required
+								/>
+							</div>
 						</div>
-						<div class="col">
-							<input
-								style="width:60%;"
-								class="form-control"
-								type="text"
-								id="username"
-								placeholder=""
-								bind:value={fields.username}
-								required
-							/>
-						</div>
-					</div>
+						<div class="form-group">
+							<label>Password</label>
+							<div class="input-group">
+								<span class="input-group-text"><i class="icon-lock" /></span>
 
-					<div class="row m-2 g-1">
-						<div class="col-3">
-							<label class="text-end d-block" for="text21">PC Password:</label>
+								<input
+									class="form-control"
+									type="password"
+									id="password"
+									placeholder=""
+									bind:value={fields.password}
+									required
+								/>
+								<div class="show-hide"><span class="show" /></div>
+							</div>
 						</div>
-						<div class="col">
-							<input
-								style="width:60%;"
-								class="form-control"
-								type="password"
-								id="password"
-								placeholder=""
-								bind:value={fields.password}
-								required
-							/>
+						<div class="form-group">
+							<div class="checkbox">
+								<input id="checkbox1" type="checkbox" />
+								<label for="checkbox1">Remember password</label>
+							</div>
+							<a class="link" href="forget-password.html">Forgot password?</a>
 						</div>
-					</div>
-					<br />
-					<section class="field-row" style="justify-content: flex-end">
-						<button type="submit">Login</button>
-					</section>
+						<div class="form-group">
+							<button class="btn btn-primary btn-block" type="submit">Sign in</button>
+						</div>
+						<div class="login-social-title">
+							<h5>Sign in with</h5>
+						</div>
+						<div class="form-group">
+							<ul class="login-social">
+								<li>
+									<a href="https://www.linkedin.com/login" target="_blank"
+										><i data-feather="linkedin" /></a
+									>
+								</li>
+								<li>
+									<a href="https://www.linkedin.com/login" target="_blank"
+										><i data-feather="twitter" /></a
+									>
+								</li>
+								<li>
+									<a href="https://www.linkedin.com/login" target="_blank"
+										><i data-feather="facebook" /></a
+									>
+								</li>
+								<li>
+									<a href="https://www.instagram.com/login" target="_blank"
+										><i data-feather="instagram" /></a
+									>
+								</li>
+							</ul>
+						</div>
+						<p>Don't have account?<a class="ms-2" href="log-in.html">Create Account</a></p>
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
-</div>
+</section>

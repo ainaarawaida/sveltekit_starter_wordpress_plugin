@@ -57,6 +57,7 @@ const apiDataLogin = async (username, password) => {
         });
     })(jQuery);
 
+    // await new Promise(r => setTimeout(r, 20000));
     // console.log("start", document.querySelector("#loader"));
     let dataArray = new FormData();
     dataArray.append('action', 'Login');
